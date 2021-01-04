@@ -1,5 +1,7 @@
 package example.android.com;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -45,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
         int price  = calculatePrice(hasClickd , chasClickd);
         //display(quantity);
         String priceMessage = orderSummary(n, price , hasClickd , chasClickd);
-        displayMessage(priceMessage);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Coffe order app" + n);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
     }
 
     private int calculatePrice(boolean wa , boolean ca){
@@ -63,22 +73,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String orderSummary(String n, int price , boolean hasClickd , boolean chasClickd){
-        String priceMessage = "\nName: " + n;
+
+        String priceMessage = "\nName: " + getString(R.string.order_summary_name);
         priceMessage = priceMessage + "\nQuantity " + quantity;
         priceMessage = priceMessage + "\nAdd whipped cream " + hasClickd;
         priceMessage = priceMessage + "\nAdd Chocolate " + chasClickd;
         priceMessage = priceMessage + "\nTotal $: " + price;
-        priceMessage = priceMessage + "\nThank You.";
+        priceMessage = priceMessage + "\n" + getString(R.string.thank_you);
         return priceMessage;
+
+//        String priceMessage = getString(R.string.order_summary_name , n);
+//        priceMessage = priceMessage + "\n" + getString(R.string.order_summary_whipped_cream , hasClickd);
+//        priceMessage = priceMessage + "\n" + getString(R.string.order_summary_chocolate , chasClickd);
+//        priceMessage = priceMessage + "\n" + getString(R.string.order_summary_quantity , quantity);
+//        priceMessage = priceMessage + "\n" + getString(R.string.order_summary_price, NumberFormat.getCurrencyInstance().format(price));
+//        priceMessage = priceMessage + "\n" + getString(R.string.thank_you);
+//        return priceMessage;
+
+        //TRANSLATE XML
+        //android:text="@string/order_summary_whipped_cream", android:text="@string/order_summary_chocolate" , android:hint="@string/order_summary_name"
+
+
     }
 
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 }

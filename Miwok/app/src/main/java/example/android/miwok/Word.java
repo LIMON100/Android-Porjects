@@ -4,6 +4,7 @@ public class Word {
 
     private String mDefaultTranslation;
     private String mMiwokTranslation;
+    private int mImageResourceId;
     
     public Word(String defaultTranslation , String miwokTrainslation){
 
@@ -11,12 +12,23 @@ public class Word {
         mMiwokTranslation = miwokTrainslation;
     }
 
-    public String getmDefaultTranslation(){
+    public Word(String defaultTranslation , String miwokTrainslation , int imageResourceId){
+
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTrainslation;
+        mImageResourceId = imageResourceId;
+    }
+
+    public String getDefaultTranslation(){
         return mDefaultTranslation;
     }
 
-    public String getmMiwokTranslation(){
+    public String getMiwokTranslation(){
         return mMiwokTranslation;
+    }
+
+    public int getImageResourceId(){
+        return mImageResourceId;
     }
 
 }

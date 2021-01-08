@@ -14,6 +14,13 @@ public class PhrasesActivity extends AppCompatActivity {
 
     MediaPlayer mMediaPlayer;
 
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,20 @@ public class PhrasesActivity extends AppCompatActivity {
                 mMediaPlayer.start();
             }
         });
+    }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 }

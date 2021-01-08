@@ -14,6 +14,13 @@ public class NumbersActivity extends AppCompatActivity {
 
     MediaPlayer mMediaPlayer;
 
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +50,29 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word = words.get(position);
+
+                releaseMediaPlayer();
+
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this , word.getAudioResourceId());
                 mMediaPlayer.start();
+
+                mMediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 }

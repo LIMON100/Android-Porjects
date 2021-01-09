@@ -1,0 +1,5 @@
+![](https://github.com/LIMON100/Android-Porjects/blob/master/Miwok/app/src/main/res/drawable/m1.PNG?raw=true)
+![](https://github.com/LIMON100/Android-Porjects/blob/master/Miwok/app/src/main/res/drawable/m2.PNG?raw=true)
+![](https://github.com/LIMON100/Android-Porjects/blob/master/Miwok/app/src/main/res/drawable/m3.PNG?raw=true)
+![](https://github.com/LIMON100/Android-Porjects/blob/master/Miwok/app/src/main/res/drawable/m4.PNG?raw=true)
+![](https://github.com/LIMON100/Android-Porjects/blob/master/Miwok/app/src/main/res/drawable/m5.PNG?raw=true)

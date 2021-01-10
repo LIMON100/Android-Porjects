@@ -6,12 +6,13 @@ public class EarthQuake {
     private String mLocation;
     private String mDate;
     private long mTimeInMilliseconds;
+    private String mUrl;
 
-    public EarthQuake(double magnitude , String location , long timeMilliseconds){
+    public EarthQuake(double magnitude, String location, long timeInMilliseconds, String url) {
         mMagnitude = magnitude;
         mLocation = location;
-        //mDate = date;
-        mTimeInMilliseconds = timeMilliseconds;
+        mTimeInMilliseconds = timeInMilliseconds;
+        mUrl = url;
     }
 
     public double getMagnitude(){
@@ -28,5 +29,9 @@ public class EarthQuake {
 
     public long getTimeMilliseconds(){
         return mTimeInMilliseconds;
+    }
+
+    public String getUrl() {
+        return mUrl;
     }
 }

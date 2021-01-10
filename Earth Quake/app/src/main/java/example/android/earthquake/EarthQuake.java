@@ -2,19 +2,19 @@ package example.android.earthquake;
 
 public class EarthQuake {
 
-    private String mMagnitude;
+    private double mMagnitude;
     private String mLocation;
     private String mDate;
     private long mTimeInMilliseconds;
 
-    public EarthQuake(String magnitude , String location , long timeMilliseconds){
+    public EarthQuake(double magnitude , String location , long timeMilliseconds){
         mMagnitude = magnitude;
         mLocation = location;
         //mDate = date;
         mTimeInMilliseconds = timeMilliseconds;
     }
 
-    public String getMagnitude(){
+    public double getMagnitude(){
         return mMagnitude;
     }
 

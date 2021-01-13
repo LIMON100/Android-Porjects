@@ -39,6 +39,14 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
 
         EarthQuake currentEarthQuake = getItem(position);
 
+        TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
+        String formattedMagnitude = formatMagnitude(currentEarthQuake.getMagnitude());
+        magnitudeView.setText(formattedMagnitude);
+
+        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeView.getBackground();
+        int magnitudeColor = getMagnitudeColor(currentEarthQuake.getMagnitude());
+        magnitudeCircle.setColor(magnitudeColor);
+
         String originalLocation = currentEarthQuake.getLocation();
 
         if (originalLocation.contains(LOCATION_SEPARATOR)) {
@@ -49,14 +57,6 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
             locationOffset = getContext().getString(R.string.near_the);
             primaryLocation = originalLocation;
         }
-
-        TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
-        String formattedMagnitude = formatMagnitude(currentEarthQuake.getMagnitude());
-        magnitudeView.setText(formattedMagnitude);
-
-        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeView.getBackground();
-        int magnitudeColor = getMagnitudeColor(currentEarthQuake.getMagnitude());
-        magnitudeCircle.setColor(magnitudeColor);
 
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
         primaryLocationView.setText(primaryLocation);

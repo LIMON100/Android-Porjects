@@ -104,7 +104,7 @@ public class MainActivity<networkInfo> extends AppCompatActivity implements Load
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (data != null && !data.isEmpty()) {
-            //mAdapter.addAll(earthquakes);
+            mAdapter.addAll(data);
             //updateUi(data);
         }
     }

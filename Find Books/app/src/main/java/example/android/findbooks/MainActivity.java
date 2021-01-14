@@ -2,7 +2,7 @@ package example.android.findbooks;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
+import android.app.LoaderManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
+
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>>{
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         //Search Button
         Button mButton = (Button) findViewById(R.id.search_button);
-        
+
         //Search Field
         mSearchView = (SearchView) findViewById(R.id.search_view_field);
         mSearchView.onActionViewExpanded();
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoadFinished(@NonNull androidx.loader.content.Loader<List<Book>> loader, List<Book> data) {
+    public void onLoadFinished(Loader<List<Book>> loader, List<Book> data) {
         View circleProgressBar = findViewById(R.id.loading_cir);
         circleProgressBar.setVisibility(GONE);
 
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoaderReset(@NonNull androidx.loader.content.Loader<List<Book>> loader) {
+    public void onLoaderReset(Loader<List<Book>> loader) {
         mAdapter.clear();
         Log.i(LOG_TAG, ": Loader reset, so we can clear out our existing data!");
     }

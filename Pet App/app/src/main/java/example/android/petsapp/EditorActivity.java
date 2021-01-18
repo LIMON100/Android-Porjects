@@ -2,7 +2,6 @@ package example.android.petsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
-
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import example.android.petsapp.data.PetContract;
 import example.android.petsapp.data.PetDbHelper;
 
 public class EditorActivity extends AppCompatActivity {
@@ -59,11 +59,11 @@ public class EditorActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.gender_male))) {
-                        mGender = PetEntry.GENDER_MALE;
+                        mGender = PetContract.PetEntry.GENDER_MALE;
                     } else if (selection.equals(getString(R.string.gender_female))) {
-                        mGender = PetEntry.GENDER_FEMALE;
+                        mGender = PetContract.PetEntry.GENDER_FEMALE;
                     } else {
-                        mGender = PetEntry.GENDER_UNKNOWN;
+                        mGender = PetContract.PetEntry.GENDER_UNKNOWN;
                     }
                 }
             }
@@ -71,7 +71,7 @@ public class EditorActivity extends AppCompatActivity {
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mGender = PetEntry.GENDER_UNKNOWN;
+                mGender = PetContract.PetEntry.GENDER_UNKNOWN;
             }
         });
     }
@@ -88,13 +88,13 @@ public class EditorActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(PetEntry.COLUMN_PET_NAME, nameString);
-        values.put(PetEntry.COLUMN_PET_BREED, breedString);
-        values.put(PetEntry.COLUMN_PET_GENDER, mGender);
-        values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
+        values.put(PetContract.PetEntry.COLUMN_PET_NAME, nameString);
+        values.put(PetContract.PetEntry.COLUMN_PET_BREED, breedString);
+        values.put(PetContract.PetEntry.COLUMN_PET_GENDER, mGender);
+        values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT, weight);
 
         // Insert a new row for pet in the database, returning the ID of that new row.
-        long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+        long newRowId = db.insert(PetContract.PetEntry.TABLE_NAME, null, values);
 
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {

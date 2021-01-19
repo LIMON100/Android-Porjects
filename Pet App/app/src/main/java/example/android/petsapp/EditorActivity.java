@@ -24,7 +24,7 @@ public class EditorActivity extends AppCompatActivity {
     private EditText mBreedEditText;
     private EditText mWeightEditText;
     private Spinner mGenderSpinner;
-    private int mGender = PetEntry.GENDER_UNKNOWN;
+    private int mGender = PetContract.PetEntry.GENDER_UNKNOWN;
 
 
     @Override
@@ -77,7 +77,6 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private void insertPet() {
-
         String nameString = mNameEditText.getText().toString().trim();
         String breedString = mBreedEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
@@ -85,6 +84,7 @@ public class EditorActivity extends AppCompatActivity {
 
         PetDbHelper mDbHelper = new PetDbHelper(this);
 
+        //Conncet with the database.
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -96,12 +96,10 @@ public class EditorActivity extends AppCompatActivity {
         // Insert a new row for pet in the database, returning the ID of that new row.
         long newRowId = db.insert(PetContract.PetEntry.TABLE_NAME, null, values);
 
-        // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
             Toast.makeText(this, "Error with saving pet", Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, the insertion was successful and we can display a toast with the row ID.
             Toast.makeText(this, "Pet saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
         }
     }

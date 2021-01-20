@@ -32,4 +32,7 @@
 
     <string name="gender_female">Female</string>
 
+    <string name="editor_insert_pet_failed">Failed! There is something wrong.</string>
+
+    <string name="editor_insert_pet_successful">Insert Successfully</string>
 </resources>

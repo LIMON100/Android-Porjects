@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayDatabaseInfo(){
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();;
+        ///SQLiteDatabase db = mDbHelper.getReadableDatabase();;
 
         String[] projection = {
                 PetContract.PetEntry._ID,
@@ -54,14 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 PetContract.PetEntry.COLUMN_PET_GENDER,
                 PetContract.PetEntry.COLUMN_PET_WEIGHT };
 
-        Cursor cursor = db.query(
-                PetContract.PetEntry.TABLE_NAME,   // The table to query
-                projection,            // The columns to return
-                null,                  // The columns for the WHERE clause
-                null,                  // The values for the WHERE clause
-                null,                  // Don't group the rows
-                null,                  // Don't filter by row groups
-                null);
+        Cursor cursor = getContentResolver().query(PetContract.PetEntry.CONTENT_URI , projection , null , null , null);
 
         TextView displayView = (TextView) findViewById(R.id.text_view_pet);
 

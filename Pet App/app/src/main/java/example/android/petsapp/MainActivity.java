@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,40 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor = getContentResolver().query(PetContract.PetEntry.CONTENT_URI , projection , null , null , null);
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_pet);
+        ListView petListView = (ListView) findViewById(R.id.list);
 
-        try{
-            displayView.setText("The pets table contains " + cursor.getCount() + " pets.\n\n");
-            displayView.append(PetContract.PetEntry._ID + " - " +
-                    PetContract.PetEntry.COLUMN_PET_NAME + " - " +
-                    PetContract.PetEntry.COLUMN_PET_BREED + " - " +
-                    PetContract.PetEntry.COLUMN_PET_GENDER + " - " +
-                    PetContract.PetEntry.COLUMN_PET_WEIGHT + "\n");
+        PetCursorAdapter adapter = new PetCursorAdapter(this , cursor);
 
-            int idColumnIndex = cursor.getColumnIndex(PetContract.PetEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_NAME);
-            int breedColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_BREED);
-            int genderColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_GENDER);
-            int weightColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_WEIGHT);
+        petListView.setAdapter(adapter);
 
-            while (cursor.moveToNext()) {
-
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                String currentBreed = cursor.getString(breedColumnIndex);
-                int currentGender = cursor.getInt(genderColumnIndex);
-                int currentWeight = cursor.getInt(weightColumnIndex);
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" + currentID + " - " +
-                        currentName + " - " +
-                        currentBreed + " - " +
-                        currentGender + " - " +
-                        currentWeight));
-            }
-        } finally {
-            cursor.close();
-         }
-        }
+    }
 
     private void insertPet() {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();

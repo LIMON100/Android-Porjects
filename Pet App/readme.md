@@ -1,4 +1,4 @@
-This is a very simple CRUD apps which provide the information of a dog shelter. The types of dog, their gender, weight. 
+This is a very simple CRUD database apps which provide the information of a dog shelter. The types of dog, their gender, weight. 
 
 When in shelter there is no dog the preview will be like this,
 

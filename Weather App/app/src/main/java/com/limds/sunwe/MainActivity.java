@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.limds.sunwe.data.SunshinePreferences;
+import com.limds.sunwe.utilities.NetworkUtils;
+import com.limds.sunwe.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
 
@@ -127,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             loadWeatherData();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

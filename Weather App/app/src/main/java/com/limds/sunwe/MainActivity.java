@@ -1,7 +1,10 @@
 package com.limds.sunwe;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +23,8 @@ import com.limds.sunwe.utilities.OpenWeatherJsonUtils;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     //private TextView mWeatherTextView;
     private RecyclerView mRecyclerView;
@@ -58,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
+
+    private void onClick(String weatherForDay){
+      Intent intent = new Intent(MainActivity.this , DetailActivity.class);
+      intent.putExtra(Intent.EXTRA_TEXT , weatherForDay);
+      startActivity(intent);
+    }
+
 
     private void showWeatherDataView() {
         mErrorMessageDisplay.setVisibility(View.INVISIBLE);
@@ -113,6 +125,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    private void openLocationInMap() {
+        String addressString = "1600 Ampitheatre Parkway, CA";
+        Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(TAG, "Couldn't call " + geoLocation.toString()
+                    + ", no receiving apps installed!");
+        }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -132,6 +161,12 @@ public class MainActivity extends AppCompatActivity {
             loadWeatherData();
             return true;
         }
+
+        if(id == R.id.action_map){
+            openLocationInMap();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

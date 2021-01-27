@@ -10,6 +10,8 @@
 
     <string name="action_refresh">Refresh</string>
 
+    <string name="action_map">MAP</string>
+
 
     <string name="error_message">An error has occurred. Please try again by clicking REFRESH </string>
 
@@ -113,6 +115,7 @@ mph
     <string name="condition_612">Shower Sleet</string>
 
     <string name="condition_615">Rain and Snow</string>
+    <string name="action_share">Share</string>
 
     <!-- light rain and snow -->
 

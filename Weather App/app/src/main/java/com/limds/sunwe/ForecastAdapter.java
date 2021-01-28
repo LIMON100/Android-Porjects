@@ -13,8 +13,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     private String[] mWeatherData;
 
-    public ForecastAdapter() {
+    public ForecastAdapter(MainActivity mainActivity) {
 
+    }
+
+    public interface ForecastAdapterOnClickHandler {
     }
 
     public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {

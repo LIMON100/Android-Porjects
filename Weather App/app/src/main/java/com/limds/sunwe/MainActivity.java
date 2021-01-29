@@ -154,14 +154,14 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapter.F
     }
 
 
-    @Override
+    /*@Override
     public void onClick(String weatherForDay) {
         Context context = this;
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
         intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, weatherForDay);
         startActivity(intentToStartDetailActivity);
-    }
+    }*/
 
     private void showWeatherDataView() {
         /* First, make sure the error is invisible */
@@ -199,6 +199,13 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapter.F
             openLocationInMap();
             return true;
         }
+
+        if (id == R.id.action_settings) {
+            Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
+            startActivity(startSettingsActivity);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

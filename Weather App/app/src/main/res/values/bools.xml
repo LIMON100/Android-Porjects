@@ -14,15 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+<!-- COMPLETED (9) Add a new resource file for boolean values in the res directory and call it bools.xml -->
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!-- Used for settings preference theme -->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-    </style>
-
+    <!-- COMPLETED (10) Add a boolean value for showing notifications by default to res/bools.xml -->
+    <bool name="show_notifications_by_default">true</bool>
 </resources>

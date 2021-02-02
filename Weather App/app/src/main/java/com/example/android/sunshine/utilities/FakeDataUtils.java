@@ -15,11 +15,6 @@ public class FakeDataUtils {
 
     private static int [] weatherIDs = {200,300,500,711,900,962};
 
-    /**
-     * Creates a single ContentValues object with random weather data for the provided date
-     * @param date a normalized date
-     * @return ContentValues object filled with random weather data
-     */
     private static ContentValues createTestWeatherContentValues(long date) {
         ContentValues testWeatherValues = new ContentValues();
         testWeatherValues.put(WeatherEntry.COLUMN_DATE, date);
@@ -34,15 +29,11 @@ public class FakeDataUtils {
         return testWeatherValues;
     }
 
-    /**
-     * Creates random weather data for 7 days starting today
-     * @param context
-     */
     public static void insertFakeData(Context context) {
-        //Get today's normalized date
+
         long today = SunshineDateUtils.normalizeDate(System.currentTimeMillis());
         List<ContentValues> fakeValues = new ArrayList<ContentValues>();
-        //loop over 7 days starting today onwards
+
         for(int i=0; i<7; i++) {
             fakeValues.add(FakeDataUtils.createTestWeatherContentValues(today + TimeUnit.DAYS.toMillis(i)));
         }

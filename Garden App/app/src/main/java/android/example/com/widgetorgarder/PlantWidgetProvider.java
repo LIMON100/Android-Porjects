@@ -1,8 +1,11 @@
 package android.example.com.widgetorgarder;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.example.com.widgetorgarder.ui.MainActivity;
 import android.widget.RemoteViews;
 
 /**
@@ -13,10 +16,14 @@ public class PlantWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        //CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.plant_widget_provider);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.plant_widget);
+
+        Intent intent = new Intent(context , MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context , 0 , intent , 0);
+
+        views.setOnClickPendingIntent(R.id.widget_plant_image , pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

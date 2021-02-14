@@ -70,6 +70,7 @@ public class PlantUtils {
         }
     }
 
+
     public static int getDisplayAgeInt(long milliSeconds) {
         int days = (int) (milliSeconds / DAY_MILLISECONDS);
         if (days >= 1) return days;
@@ -77,6 +78,7 @@ public class PlantUtils {
         if (hours >= 1) return hours;
         return (int) (milliSeconds / MINUTE_MILLISECONDS);
     }
+
 
     public static String getDisplayAgeUnit(Context context, long milliSeconds) {
         int days = (int) (milliSeconds / DAY_MILLISECONDS);

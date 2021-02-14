@@ -17,9 +17,6 @@ import java.util.Arrays;
 
 public class PlantContentProvider extends ContentProvider {
 
-    // Define final integer constants for the directory of plants and a single item.
-    // It's convention to use 100, 200, 300, etc for directories,
-    // and related ints (101, 102, ..) for items in that directory.
     public static final int PLANTS = 100;
     public static final int PLANT_WITH_ID = 101;
 
@@ -72,9 +69,9 @@ public class PlantContentProvider extends ContentProvider {
         // Notify the resolver if the uri has been changed, and return the newly inserted URI
         getContext().getContentResolver().notifyChange(uri, null);
 
-        // Return constructed uri (this points to the newly inserted row of data)
         return returnUri;
     }
+
 
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
@@ -147,7 +144,6 @@ public class PlantContentProvider extends ContentProvider {
         return plantsDeleted;
     }
 
-
     @Override
     public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
@@ -176,7 +172,7 @@ public class PlantContentProvider extends ContentProvider {
                 }
                 plantsUpdated = db.update(PlantContract.PlantEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
-            // Default exception
+
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -186,10 +182,9 @@ public class PlantContentProvider extends ContentProvider {
             // A place (or more) was updated, set notification
             getContext().getContentResolver().notifyChange(uri, null);
         }
-        // Return the number of places deleted
+
         return plantsUpdated;
     }
-
 
     @Override
     public String getType(@NonNull Uri uri) {

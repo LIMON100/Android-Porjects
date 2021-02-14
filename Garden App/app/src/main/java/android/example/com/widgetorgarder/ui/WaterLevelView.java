@@ -12,7 +12,6 @@ import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
-
 public class WaterLevelView extends View {
 
     private float mRadius;

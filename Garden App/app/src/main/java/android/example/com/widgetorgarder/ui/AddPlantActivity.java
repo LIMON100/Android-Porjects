@@ -45,7 +45,6 @@ public class AddPlantActivity extends AppCompatActivity {
         contentValues.put(PlantContract.PlantEntry.COLUMN_CREATION_TIME, timeNow);
         contentValues.put(PlantContract.PlantEntry.COLUMN_LAST_WATERED_TIME, timeNow);
         getContentResolver().insert(PlantContract.PlantEntry.CONTENT_URI, contentValues);
-
         PlantWateringService.startActionUpdatePlantWidgets(this);
         // Close this activity
         finish();

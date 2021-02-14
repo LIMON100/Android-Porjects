@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="android.example.com.widgetorgarder.ui.AddPlantActivity">
+        tools:context="com.example.android.mygarden.ui.AddPlantActivity">
 
         <TextView
             style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -20,13 +20,12 @@
             android:padding="16dp"
             android:text="@string/select_plant_type" />
 
-        <view class="androidx.appcompat.app.AlertController$RecycleListView"
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plant_types_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp">
+            android:paddingTop="8dp"/>
 
-        </view>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -10,7 +10,7 @@
         android:id="@+id/water_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:radius="50dp"
+        android:radius="100dp"
         android:value="100"
         tools:ignore="MissingConstraints" />
 

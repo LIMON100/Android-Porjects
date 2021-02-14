@@ -54,11 +54,7 @@ public class MainActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        try{
-            cursor.moveToFirst();
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+        cursor.moveToFirst();
         mAdapter.swapCursor(cursor);
     }
 

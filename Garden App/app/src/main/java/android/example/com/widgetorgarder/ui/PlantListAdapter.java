@@ -19,7 +19,6 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.Plan
     private Context mContext;
     private Cursor mCursor;
 
-
     public PlantListAdapter(Context context, Cursor cursor) {
         this.mContext = context;
         this.mCursor = cursor;
@@ -67,11 +66,13 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.Plan
         }
     }
 
+
     @Override
     public int getItemCount() {
         if (mCursor == null) return 0;
         return mCursor.getCount();
     }
+
 
     class PlantViewHolder extends RecyclerView.ViewHolder {
 

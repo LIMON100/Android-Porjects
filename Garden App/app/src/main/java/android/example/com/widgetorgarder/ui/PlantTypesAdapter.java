@@ -12,19 +12,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
 public class PlantTypesAdapter extends RecyclerView.Adapter<PlantTypesAdapter.PlantViewHolder> {
 
     Context mContext;
     TypedArray mPlantTypes;
-
 
     public PlantTypesAdapter(Context context) {
         mContext = context;
         Resources res = mContext.getResources();
         mPlantTypes = res.obtainTypedArray(R.array.plant_types);
     }
-
 
     @Override
     public PlantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -64,3 +61,4 @@ public class PlantTypesAdapter extends RecyclerView.Adapter<PlantTypesAdapter.Pl
 
     }
 }
+
